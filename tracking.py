@@ -15,8 +15,11 @@ folder_path = r'C:\Users\R1nge\Documents\TELEGRAM\SHARED'
 png_files = glob.glob(os.path.join(folder_path, '*.png'))
 
 # Dictionary to store results
-results = {}
+results = [None] * len(png_files)
 
+print(len(png_files))
+
+i = 0
 # Analyze each .png file
 for png_file in png_files:
     # Read the image
@@ -42,9 +45,13 @@ for png_file in png_files:
     right_pupil = gaze.pupil_right_coords()
 
     # Store the result in the dictionary
-    results[os.path.basename(png_file)] = {
+    results[i] = {
         'direction': direction
     }
+    i += 1
+    print(i)
+
+print(len(results))
 
 # Save results to a JSON file
 output_file = os.path.join(folder_path, 'gaze_results.json')
