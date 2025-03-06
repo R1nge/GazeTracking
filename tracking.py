@@ -14,6 +14,13 @@ sharedPath = r'C:\Users\R1nge\Documents\TELEGRAM\SHARED'
 statePath = os.path.join(sharedPath, "STATE")
 statePathJson = os.path.join(statePath, "STATE.json")
 
+state = {
+            "state": "detection_gaze"
+        }
+
+with open(statePathJson,'w', encoding='utf-8') as f:
+    json.dump(state, f,ensure_ascii=False, indent=4)
+
 # Find all .png files in the folder
 png_files = glob.glob(os.path.join(sharedPath, '*.png'))
 
@@ -65,7 +72,7 @@ print(f"Results saved to {output_file}")
 
 
 state = {
-            "state": "detection_finished"
+            "state": "gaze_finished"
         }
 
 with open(statePathJson,'w', encoding='utf-8') as f:
