@@ -4,15 +4,18 @@ import glob
 import json
 import numpy as np  # Add numpy import
 from gaze_tracking import GazeTracking
+import time
 
 # Initialize GazeTracking
 gaze = GazeTracking()
 
 # Path to the folder containing .png files
-folder_path = r'C:\Users\R1nge\Documents\TELEGRAM\SHARED'
+sharedPath = r'C:\Users\R1nge\Documents\TELEGRAM\SHARED'
+statePath = os.path.join(sharedPath, "STATE")
+statePathJson = os.path.join(statePath, "STATE.json")
 
 # Find all .png files in the folder
-png_files = glob.glob(os.path.join(folder_path, '*.png'))
+png_files = glob.glob(os.path.join(sharedPath, '*.png'))
 
 # Dictionary to store results
 results = [None] * len(png_files)
@@ -54,8 +57,16 @@ for png_file in png_files:
 print(len(results))
 
 # Save results to a JSON file
-output_file = os.path.join(folder_path, 'gaze_results.json')
+output_file = os.path.join(sharedPath, 'gaze_results.json')
 with open(output_file, 'w') as json_file:
     json.dump(results, json_file, indent=4)
 
 print(f"Results saved to {output_file}")
+
+
+state = {
+            "state": "detection_finished"
+        }
+
+with open(statePathJson,'w', encoding='utf-8') as f:
+    json.dump(state, f,ensure_ascii=False, indent=4)
