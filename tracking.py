@@ -25,7 +25,7 @@ with open(statePathJson,'w', encoding='utf-8') as f:
 png_files = glob.glob(os.path.join(sharedPath, '*.png'))
 
 # Dictionary to store results
-results = [None] * len(png_files)
+results = []
 
 print(len(png_files))
 
@@ -55,9 +55,10 @@ for png_file in png_files:
     right_pupil = gaze.pupil_right_coords()
 
     # Store the result in the dictionary
-    results[i] = {
+    data = {
         'direction': direction
     }
+    results.append(data)
     i += 1
     print(i)
 
