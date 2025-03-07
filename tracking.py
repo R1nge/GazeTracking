@@ -22,7 +22,7 @@ with open(statePathJson,'w', encoding='utf-8') as f:
     json.dump(state, f,ensure_ascii=False, indent=4)
 
 # Find all .png files in the folder
-png_files = glob.glob(os.path.join(sharedPath, '*.png'))
+png_files = glob.glob(os.path.join(os.path.join(sharedPath, "GAZE"), '*.jpg'))
 
 # Dictionary to store results
 results = []
