@@ -3,6 +3,7 @@ import os
 import glob
 import json
 from gaze_tracking import GazeTracking
+import subprocess
 
 gaze = GazeTracking()
 
@@ -85,3 +86,6 @@ state = {
 
 with open(statePathJson,'w', encoding='utf-8') as f:
     json.dump(state, f,ensure_ascii=False, indent=4)
+
+Face_landmarks = os.path.join(sharedPath, "Face_Landmarks.bat")
+result = subprocess.run([Face_landmarks], shell=True)
